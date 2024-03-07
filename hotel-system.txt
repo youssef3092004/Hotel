@@ -1,0 +1,738 @@
+#include<iostream>
+#include<windows.h>
+#include <string>
+#include <fstream>
+using namespace std;
+
+void main_func();
+void add_stuff();
+void add_guest();
+void modify_guest();
+void modify_stuff();
+
+class data_share;
+class Share_data;
+class Guest;
+class stuff;
+
+
+int main()
+{
+    main_func();
+
+    return 0;
+}
+
+class data_share
+{
+protected:
+
+    int hourwork;
+    float salary;
+    string E_mail;
+    int id_number;
+
+};
+
+class Share_data
+{
+
+protected:
+
+    string name;
+    string address;
+    int age;
+    int birthday;
+    int Reservationstartdate;
+    int ReservationEnddate;
+    int numofday;   // Number of nights booked
+    int room_number;
+    int phone;
+    int x,y,a,b,c,d;
+    bool allinclusive;
+    int price=1;
+
+};
+
+class Guest :protected Share_data
+{
+public:
+
+    Guest(string name,string address,int age,int birthday,int x,int y,int Reservationstartdate,int a,int b,int ReservationEnddate,int c,int d,int numofday,int room_number,int phone,bool allinclusive,int price)
+    {
+        this->name = name;
+        this->address = address;
+        this->age = age;
+        this->birthday = birthday;
+        this->x = x;
+        this->y = y;
+        this->Reservationstartdate = Reservationstartdate;
+        this->a = a;
+        this->b = b;
+        this->ReservationEnddate = ReservationEnddate;
+        this->c = c;
+        this->d = d;
+        this->numofday = numofday;
+        this->room_number = room_number;
+        this->phone = phone;
+        this->allinclusive = allinclusive;
+        this->price = price;
+    }
+    //************************
+    int room(int j)
+    {
+    ofstream hotel;
+    hotel.open("system of hotel.txt",std::ios_base::app);
+
+        int z;
+        cout<<"-*-*-choose from list-*-*-"<<endl;
+        cout<<"1-single room"<<endl;
+        cout<<"2-double room"<<endl;
+        cout<<"3-triple room"<<endl;
+        cout<<"4-suite room"<<endl;
+        cin>>z;
+
+        if(allinclusive==1)
+
+        {
+            if(z==1)    // single room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*6000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : single room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : single room"<<endl;
+
+                return price;
+            }
+
+            else if(z==2)   //double room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*8000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : double room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : double room"<<endl;
+
+                return price;
+            }
+
+            else if(z==3)  //triple room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*11000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : triple room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : triple room"<<endl;
+
+                return price;
+            }
+
+            else if(z==4)   //suit
+            {
+                price=(ReservationEnddate-Reservationstartdate)*21000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : suite room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : suite room"<<endl;
+
+                return price;
+            }
+        }
+        else if(allinclusive==0)
+        {
+            if(z==1)   // single room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*5000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : single room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : single room"<<endl;
+
+                return price;
+            }
+
+            else if(z==2)   //double room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*7000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : double room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : double room"<<endl;
+
+                return price;
+            }
+
+            else if(z==3)   //triple room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*10000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : triple room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : triple room"<<endl;
+
+                return price;
+            }
+
+            else if(z==4)   //suit
+            {
+                price=(ReservationEnddate-Reservationstartdate)*20000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : suite room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : suite room"<<endl;
+
+                return price;
+            }
+        }
+    }
+
+
+    //******************
+    void print(int j)
+    {
+    ofstream hotel;
+    hotel.open("system of hotel.txt",std::ios_base::app);
+
+        cout<<"|    guest's name  "<<j+1<<": "<<name<<endl;
+        cout<<"|    guest's age  "<<j+1<<": "<<age<<endl;
+        cout<<"|    guest's address  "<<j+1<<": "<<address<<endl;
+        cout<<"|    guest's phone  "<<j+1<<": "<<phone<<endl;
+        cout<<"|    guest's birthday  "<<j+1<<": "<<birthday<<"/"<<x<<"/"<<y<<endl;
+        cout<<"|    guest's Reservation start date  "<<j+1<<": "<<Reservationstartdate<<"/"<<a<<"/"<<b<<endl;
+        cout<<"|    guest's Reservation End date  "<<j+1<<": "<<ReservationEnddate<<"/"<<c<<"/"<<d<<endl;
+        cout<<"|    guest's number of night  "<<j+1<<": "<<ReservationEnddate-Reservationstartdate<<endl;
+        cout<<"|    room number  "<<j+1<<": "<<room_number<<endl;
+        cout<<"|    all inclusive  "<<j+1<<": "<<allinclusive<<endl;
+        cout<<"|    the price  "<<j+1<<": "<<price<<" EG";
+        cout<<"\n-------------------------------------------------------------------------\n";
+
+        hotel<<"|    guest's name  "<<j+1<<": "<<name<<endl;
+        hotel<<"|    guest's age  "<<j+1<<": "<<age<<endl;
+        hotel<<"|    guest's address  "<<j+1<<": "<<address<<endl;
+        hotel<<"|    guest's phone  "<<j+1<<": "<<phone<<endl;
+        hotel<<"|    guest's birthday  "<<j+1<<": "<<birthday<<"/"<<x<<"/"<<y<<endl;
+        hotel<<"|    guest's Reservation start date  "<<j+1<<": "<<Reservationstartdate<<"/"<<a<<"/"<<b<<endl;
+        hotel<<"|    guest's Reservation End date  "<<j+1<<": "<<ReservationEnddate<<"/"<<c<<"/"<<d<<endl;
+        hotel<<"|    guest's number of night  "<<j+1<<": "<<ReservationEnddate-Reservationstartdate<<endl;
+        hotel<<"|    room number  "<<j+1<<": "<<room_number<<endl;
+        hotel<<"|    all inclusive  "<<j+1<<": "<<allinclusive<<endl;
+        hotel<<"|    the price  "<<j+1<<": "<<price<<" EG";
+        hotel<<"\n-------------------------------------------------------------------------\n";
+    }
+};
+class Modifyguest :public Guest
+{
+
+public:
+
+    Modifyguest (string name,string address,int age,int birthday,int x,int y,int Reservationstartdate,int a,int b,int ReservationEnddate,int c,int d,int numofday,int room_number,int phone,bool allinclusive, int price):Guest( name, address,age,birthday,x,y,Reservationstartdate,a,b,ReservationEnddate,c,d,numofday,room_number,phone,allinclusive, price)
+    {
+
+    }
+    //********************
+
+    int room(int j)
+    {
+    ofstream hotel;
+    hotel.open("system of hotel.txt",std::ios_base::app);
+
+        int z;
+        cout<<"-*-*-choose from list-*-*-"<<endl;
+        cout<<"1-single room"<<endl;
+        cout<<"2-double room"<<endl;
+        cout<<"3-triple room"<<endl;
+        cout<<"4-suite room"<<endl;
+        cin>>z;
+
+        if(allinclusive==1)
+
+        {
+            if(z==1)    // single room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*6000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : single room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : single room"<<endl;
+
+                return price;
+            }
+
+            else if(z==2)   //double room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*8000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : double room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : double room"<<endl;
+
+                return price;
+            }
+
+            else if(z==3)  //triple room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*11000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : triple room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : triple room"<<endl;
+
+                return price;
+            }
+
+            else if(z==4)   //suit
+            {
+                price=(ReservationEnddate-Reservationstartdate)*21000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : suite room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : suite room"<<endl;
+
+                return price;
+            }
+        }
+        else if(allinclusive==0)
+        {
+            if(z==1)   // single room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*5000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : single room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : single room"<<endl;
+
+                return price;
+            }
+
+            else if(z==2)   //double room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*7000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : double room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : double room"<<endl;
+
+                return price;
+            }
+
+            else if(z==3)   //triple room
+            {
+                price=(ReservationEnddate-Reservationstartdate)*10000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : triple room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : triple room"<<endl;
+
+                return price;
+            }
+
+            else if(z==4)   //suit
+            {
+                price=(ReservationEnddate-Reservationstartdate)*20000;
+                cout<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                cout<<"|    Room is : suite room"<<endl;
+
+                hotel<<"\n----------------------- Guest Information for guest "<<name<< "-----------------------"<<endl;
+                hotel<<"|    Room is : suite room"<<endl;
+
+                return price;
+            }
+        }
+    }
+
+
+    //********************
+    void print(int j)
+    {
+
+    ofstream hotel;
+    hotel.open("system of hotel.txt",std::ios_base::app);
+
+        cout<<"|    guest's name  "<<j+1<<": "<<name<<endl;
+        cout<<"|    guest's age  "<<j+1<<": "<<age<<endl;
+        cout<<"|    guest's address  "<<j+1<<": "<<address<<endl;
+        cout<<"|    guest's phone  "<<j+1<<": "<<phone<<endl;
+        cout<<"|    guest's birthday  "<<j+1<<": "<<birthday<<"/"<<x<<"/"<<y<<endl;
+        cout<<"|    guest's Reservation start date  "<<j+1<<": "<<Reservationstartdate<<"/"<<a<<"/"<<b<<endl;
+        cout<<"|    guest's Reservation End date  "<<j+1<<": "<<ReservationEnddate<<"/"<<c<<"/"<<d<<endl;
+        cout<<"|    guest's number of night  "<<j+1<<": "<<ReservationEnddate-Reservationstartdate<<endl;
+        cout<<"|    room number  "<<j+1<<": "<<room_number<<endl;
+        cout<<"|    all inclusive  "<<j+1<<": "<<allinclusive<<endl;
+        cout<<"|    the price  "<<j+1<<": "<<price<<" EG";
+        cout<<"\n-------------------------------------------------------------------------\n";
+
+        hotel<<"|    guest's name  "<<j+1<<": "<<name<<endl;
+        hotel<<"|    guest's age  "<<j+1<<": "<<age<<endl;
+        hotel<<"|    guest's address  "<<j+1<<": "<<address<<endl;
+        hotel<<"|    guest's phone  "<<j+1<<": "<<phone<<endl;
+        hotel<<"|    guest's birthday  "<<j+1<<": "<<birthday<<"/"<<x<<"/"<<y<<endl;
+        hotel<<"|    guest's Reservation start date  "<<j+1<<": "<<Reservationstartdate<<"/"<<a<<"/"<<b<<endl;
+        hotel<<"|    guest's Reservation End date  "<<j+1<<": "<<ReservationEnddate<<"/"<<c<<"/"<<d<<endl;
+        hotel<<"|    guest's number of night  "<<j+1<<": "<<ReservationEnddate-Reservationstartdate<<endl;
+        hotel<<"|    room number  "<<j+1<<": "<<room_number<<endl;
+        hotel<<"|    all inclusive  "<<j+1<<": "<<allinclusive<<endl;
+        hotel<<"|    the price  "<<j+1<<": "<<price<<" EG";
+        hotel<<"\n-------------------------------------------------------------------------\n";
+
+    }
+};
+
+class Stuff :protected Share_data,data_share
+{
+public:
+
+    Stuff(string name,int age,int hourwork,float salary,string E_mail,int id_number)
+    {
+        this -> name = name;
+        this -> age = age;
+        this -> hourwork = hourwork;
+        this -> salary = salary;
+        this -> E_mail = E_mail;
+        this -> id_number = id_number;
+    }
+
+    void print(int j)
+    {
+
+    ofstream hotel;
+    hotel.open("system of hotel.txt",std::ios_base::app);
+
+        cout<<"\n---------------------------- stuff Information "<<name<< " ----------------------------\n";
+        cout<<"|    stuff name  "<<j+1<<": "<<name<<endl;
+        cout<<"|    stuff age  "<<j+1<<": "<<age<<endl;
+        cout<<"|    stuff hour's works  "<<j+1<<": "<<hourwork<<endl;
+        cout<<"|    stuff salary  "<<j+1<<": "<<salary<<endl;
+        cout<<"|    E_mail  "<<j+1<<": "<<E_mail<<endl;
+        cout<<"|    ID number is  "<<j+1<<": "<<id_number<<endl;
+        cout<<"----------------------------------------------------------------------------------------\n";
+
+        hotel<<"\n---------------------------- stuff Information "<<name<< " ----------------------------\n";
+        hotel<<"|    stuff name  "<<j+1<<": "<<name<<endl;
+        hotel<<"|    stuff age  "<<j+1<<": "<<age<<endl;
+        hotel<<"|    stuff hour's works  "<<j+1<<": "<<hourwork<<endl;
+        hotel<<"|    stuff salary  "<<j+1<<": "<<salary<<endl;
+        hotel<<"|    E_mail  "<<j+1<<": "<<E_mail<<endl;
+        hotel<<"|    ID number is  "<<j+1<<": "<<id_number<<endl;
+        hotel<<"----------------------------------------------------------------------------------------\n";
+
+    }
+};
+
+
+class Modifystuff :public Stuff
+{
+public:
+    string name;
+    int age;
+    int hourwork;
+    float salary;
+    string E_mail;
+    int id_number;
+
+    Modifystuff(string name,int age,int hourwork,float salary,string E_mail,int id_number):Stuff(name,age,hourwork,salary,E_mail,id_number)
+    {
+
+    }
+
+    void print(int j)
+    {
+
+    ofstream hotel;
+    hotel.open("system of hotel.txt",std::ios_base::app);
+
+        cout<<"\n---------------------------- Modify Stuff Information "<<name<< " ----------------------------\n";
+        cout<<"|    stuff name  "<<j+1<<": "<<name<<endl;
+        cout<<"|    stuff age  "<<j+1<<": "<<age<<endl;
+        cout<<"|    stuff hour's works  "<<j+1<<": "<<hourwork<<endl;
+        cout<<"|    stuff salary  "<<j+1<<": "<<salary<<endl;
+        cout<<"|    E_mail  "<<j+1<<": "<<E_mail<<endl;
+        cout<<"|    ID number is  "<<j+1<<": "<<id_number<<endl;
+        cout<<"----------------------------------------------------------------------------------------\n";
+
+        hotel<<"\n---------------------------- Modify stuff Information "<<name<< " ----------------------------\n";
+        hotel<<"|    stuff name  "<<j+1<<": "<<name<<endl;
+        hotel<<"|    stuff age  "<<j+1<<": "<<age<<endl;
+        hotel<<"|    stuff hour's works  "<<j+1<<": "<<hourwork<<endl;
+        hotel<<"|    stuff salary  "<<j+1<<": "<<salary<<endl;
+        hotel<<"|    E_mail  "<<j+1<<": "<<E_mail<<endl;
+        hotel<<"|    ID number is  "<<j+1<<": "<<id_number<<endl;
+        hotel<<"----------------------------------------------------------------------------------------\n";
+
+    }
+};
+
+
+void main_func()
+{
+    system("cls");
+
+    int choice;
+    do
+    {
+        cout <<"\n-------- the system  --------";
+        cout <<"\n1- Press 1 to add Guest";
+        cout <<"\n2- Press 2 to modify the guest Record";
+        cout <<"\n3- Press 3 to add Stuff";
+        cout <<"\n4- Press 4 to modify the stuff ";
+        cout <<"\n5- Press 5 to exit\n";
+        cout<<"------------------------\n";
+        cin >> choice;
+        switch(choice)
+        {
+
+        case 1:
+            add_guest();
+            break;
+
+        case 2:
+            modify_guest();
+            break;
+
+        case 3:
+            add_stuff();
+            break;
+
+        case 4:
+            modify_stuff();
+            break;
+
+        case 5:
+            break;
+
+        default:
+            cout << "\nEnter a valid number :( \n";
+
+        }
+    }
+    while(choice != 5);
+
+}
+
+void add_stuff()
+{
+    system("cls");
+
+    string name[100];
+    int age[100];
+    int hourwork[100];
+    float salary[100];
+    string E_mail[100];
+    int id_number[100];
+
+
+    int number_of_stuff;
+    cout << "Enter the number of stuff : \n";
+    cin >> number_of_stuff;
+
+    system("cls");
+
+    for(int i= 0 ; i < number_of_stuff ; i++)
+    {
+        system("cls");
+
+        cout<<"------------------ for stuff "<<i+1<<" -------------------\n";
+        cout<<"write the name  "<<i+1<<endl;
+        cin>>name[i];
+        cout<<"\nwrite the age  "<<i+1<<endl;
+        cin>>age[i];
+        cout<<"\nwrite the hour's works  "<<i+1<<endl;
+        cin>>hourwork[i];
+        cout<<"\nwrite the salary  "<<i+1<<endl;
+        cin>>salary[i];
+        cout<<"\nwrite the E_mail  "<<i+1<<endl;
+        cin>>E_mail[i];
+        cout<<"\nwrite the ID number  "<<i+1<<endl;
+        cin>>id_number[i];
+        cout<<"-------------------------------------\n";
+        system("cls");
+    }
+
+    for(int j = 0 ; j < number_of_stuff ; j++)
+    {
+        Stuff
+        stuff(name[j], age[j], hourwork[j], salary[j], E_mail[j],id_number[j]);
+        stuff.print(j);
+    }
+
+}
+
+void modify_stuff()
+{
+    system("cls");
+
+    string name[100];
+    int age[100];
+    int hourwork[100];
+    float salary[100];
+    string E_mail[100];
+    int id_number[100];
+
+
+    int number_of_stuff;
+    cout<<"Enter the number of stuff : \n";
+    cin>>number_of_stuff;
+
+    system("cls");
+
+    for(int i= 0 ; i < number_of_stuff ; i++)
+    {
+        system("cls");
+
+        cout<<"------------------ to modify the stuff "<<i+1<<" -------------------\n";
+        cout<<"write the name  "<<i+1<<endl;
+        cin>>name[i];
+        cout<<"\nwrite the age  "<<i+1<<endl;
+        cin>>age[i];
+        cout<<"\nwrite the hour's works  "<<i+1<<endl;
+        cin>>hourwork[i];
+        cout<<"\nwrite the salary  "<<i+1<<endl;
+        cin>>salary[i];
+        cout<<"\nwrite the E_mail  "<<i+1<<endl;
+        cin>>E_mail[i];
+        cout<<"\nwrite the ID number  "<<i+1<<endl;
+        cin>>id_number[i];
+        cout<<"-------------------------------------\n";
+        system("cls");
+    }
+
+    for(int j = 0 ; j < number_of_stuff ; j++)
+    {
+        Modifystuff
+        modifystuff(name[j], age[j], hourwork[j], salary[j], E_mail[j],id_number[j]);
+        modifystuff.print(j);
+    }
+
+}
+
+void add_guest()
+{
+    system("cls");
+
+    string name[100];
+    string address[100];
+    int age[100];
+    int birthday[100];
+    int Reservationstartdate[100];
+    int ReservationEnddate[100];
+    int numofday[100];   // Number of nights booked
+    int room_number[100];
+    int phone[100];
+    int allinclusive[100];
+    int price[100];
+    int x[100],y[100],a[100],b[100],c[100],d[100];
+
+    int number_of_guest;
+    cout << "Enter the number of Guest: \n";
+    cin >> number_of_guest;
+
+    system("cls");
+
+    for(int i= 0 ; i < number_of_guest ; i++)
+    {
+        system("cls");
+
+        cout<<"------------------ for guest "<<i+1<<" -------------------\n";
+        cout<<"write the name  "<<i+1<<endl;
+        cin>>name[i];
+        cout<<"\nwrite the phone  "<<i+1<<endl;
+        cin>>phone[i];
+        cout<<"\nwrite the age  "<<i+1<<endl;
+        cin>>age[i];
+        cout<<"\nwrite the address  "<<i+1<<endl;
+        cin>>address[i];
+        cout<<"\nwrite the birthday  "<<i+1<<endl;
+        cin>>birthday[i]>>x[i]>>y[i];
+        cout<<"\nwrite the Reservation start date  "<<i+1<<endl;
+        cin>>Reservationstartdate[i]>>a[i]>>b[i];
+        cout<<"\nwrite the Reservation End date  "<<i+1<<endl;
+        cin>>ReservationEnddate[i]>>c[i]>>d[i];
+        cout<<"write the room number  "<<i+1<<endl;
+        cin>>room_number[i];
+        cout<<"-------------------------------------\n";
+        system("cls");
+    }
+
+    for(int j = 0 ; j < number_of_guest ; j++)
+    {
+        Guest
+        guest(name[j],address[j],age[j],birthday[j],x[j],y[j],Reservationstartdate[j],a[j],b[j],ReservationEnddate[j],c[j],d[j],numofday[j],room_number[j],phone[j],allinclusive[j],price[j]);
+        guest.room(j);
+        guest.print(j);
+    }
+
+}
+
+void modify_guest()
+{
+    system("cls");
+
+    string name[100];
+    string address[100];
+    int age[100];
+    int birthday[100];
+    int Reservationstartdate[100];
+    int ReservationEnddate[100];
+    int numofday[100];   // Number of nights booked
+    int room_number[100];
+    int phone[100];
+    bool allinclusive[100];
+    int price[100];
+    int x[100],y[100],a[100],b[100],c[100],d[100];
+
+    int number_of_guest;
+    cout << "Enter the number of Guest: \n";
+    cin >> number_of_guest;
+
+    system("cls");
+
+    for(int i= 0 ; i < number_of_guest ; i++)
+    {
+        system("cls");
+        cout<<"------------------ to modify the guest "<<i+1<<" -------------------\n";
+        cout<<"write the name  "<<i+1<<endl;
+        cin>>name[i];
+        cout<<"\nwrite the phone  "<<i+1<<endl;
+        cin>>phone[i];
+        cout<<"\nwrite the age  "<<i+1<<endl;
+        cin>>age[i];
+        cout<<"\nwrite the address  "<<i+1<<endl;
+        cin>>address[i];
+        cout<<"\nwrite the birthday  "<<i+1<<endl;
+        cin>>birthday[i]>>x[i]>>y[i];
+        cout<<"\nwrite the Reservation start date  "<<i+1<<endl;
+        cin>>Reservationstartdate[i]>>a[i]>>b[i];
+        cout<<"\nwrite the Reservation End date  "<<i+1<<endl;
+        cin>>ReservationEnddate[i]>>c[i]>>d[i];
+        cout<<"write the room number  "<<i+1<<endl;
+        cin>>room_number[i];
+        cout<<"-------------------------------------\n";
+        system("cls");
+    }
+
+    for(int j = 0 ; j < number_of_guest ; j++)
+    {
+        Modifyguest
+        modifyguest(name[j],address[j],age[j],birthday[j],x[j],y[j],Reservationstartdate[j],a[j],b[j],ReservationEnddate[j],c[j],d[j],numofday[j],room_number[j],phone[j],allinclusive[j],price[j]);
+        modifyguest.room(j);
+        modifyguest.print(j);
+    }
+
+}
+
+
